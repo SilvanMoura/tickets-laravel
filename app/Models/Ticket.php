@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    protected $table = 'tickets'; // Nome da tabela no banco de dados
+    protected $table = 'tickets';
+    protected $primaryKey = 'protocol';
 
     protected $fillable = [
-        'protocolo', // Título do ticket
-        'title', // Descrição do ticket
+        'protocol', 
+        'title', 
         'type', 
         'description',
         'user_id',
@@ -18,8 +19,8 @@ class Ticket extends Model
         'open_at',
         'closed_at',
         'closure_reason',
+        'created_by',
         'created_at',
         'updated_at',      
     ];
-
 }
