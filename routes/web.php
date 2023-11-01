@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [TicketController::class, 'ticketAll'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::get('/createTicket', [TicketController::class, 'createTicket'])
+    ->middleware(['auth', 'verified'])
+    ->name('createTicket');
+
+Route::get('/newUser', [TicketController::class, 'createTicket'])
+    ->middleware(['auth', 'verified'])
+    ->name('newUser');
+    
+Route::get('/paramsSystem', [TicketController::class, 'createTicket'])
+    ->middleware(['auth', 'verified'])
+    ->name('paramsSystem');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

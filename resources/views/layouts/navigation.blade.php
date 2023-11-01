@@ -16,6 +16,20 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('newUser')" :active="request()->routeIs('newUser')">
+                        {{ __('Novos usuários') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('paramsSystem')" :active="request()->routeIs('paramsSystem')">
+                        {{ __('Parâmetros do sistema') }}
+                    </x-nav-link>
+                </div>
+
+                
             </div>
 
             <!-- Settings Dropdown -->
