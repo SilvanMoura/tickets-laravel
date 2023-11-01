@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/createTicket', [TicketController::class, 'createTicketForm'])
     ->middleware(['auth', 'verified'])
     ->name('createTicket');
 
-Route::get('/newUser', [TicketController::class, 'createTicket'])
+Route::get('/newUser', [UserController::class, 'addUsersTemplate'])
     ->middleware(['auth', 'verified'])
     ->name('newUser');
 
@@ -87,7 +88,10 @@ Route::get('/updateDomainForm/{id}', [DomainController::class, 'updateDomainForm
 Route::put('/updateDomain/{id}', [DomainController::class, 'updateDomain'])
     ->middleware(['auth', 'verified'])
     ->name('updateDomain');
-
+    
+Route::post('/registroUser', [UserController::class, 'registroUser'])
+    ->middleware(['auth', 'verified'])
+    ->name('registroUser');
 
 
 Route::middleware('auth')->group(function () {

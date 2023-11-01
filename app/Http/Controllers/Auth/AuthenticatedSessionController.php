@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,6 +30,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $user = new User();
+            $user = $user::where('id', $userId)->first();
+
+            session_start();
+            $_SESSION['type_user']=$user['user_type'];
+        }
+        //echo "<pre>teste"; print_r($_SESSION); echo "</pre>"; exit;
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
