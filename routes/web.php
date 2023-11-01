@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\DomainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::get('/newUser', [TicketController::class, 'createTicket'])
     ->middleware(['auth', 'verified'])
     ->name('newUser');
 
-Route::get('/paramsSystem', [TicketController::class, 'createTicket'])
+Route::get('/paramsSystem', [DomainController::class, 'getDomains'])
     ->middleware(['auth', 'verified'])
     ->name('paramsSystem');
 
@@ -63,10 +64,29 @@ Route::post('/encerrarTicket/{protocol}', [TicketController::class, 'encerrarTic
     ->middleware(['auth', 'verified'])
     ->name('encerrarTicket');
 
+Route::get('/createDomainForm', [DomainController::class, 'createDomainForm'])
+    ->middleware(['auth', 'verified'])
+    ->name('createDomainForm');
 
+Route::post('/createDomain', [DomainController::class, 'createDomain'])
+    ->middleware(['auth', 'verified'])
+    ->name('createDomain');
 
+Route::get('/getDomainId/{id}', [DomainController::class, 'getDomainId'])
+    ->middleware(['auth', 'verified'])
+    ->name('getDomainId');
 
+Route::get('/deletarDomain/{id}', [DomainController::class, 'deletarDomain'])
+    ->middleware(['auth', 'verified'])
+    ->name('deletarDomain');
 
+Route::get('/updateDomainForm/{id}', [DomainController::class, 'updateDomainForm'])
+    ->middleware(['auth', 'verified'])
+    ->name('updateDomainForm');
+
+Route::put('/updateDomain/{id}', [DomainController::class, 'updateDomain'])
+    ->middleware(['auth', 'verified'])
+    ->name('updateDomain');
 
 
 
